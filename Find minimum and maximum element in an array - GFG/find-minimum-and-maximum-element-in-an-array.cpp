@@ -24,9 +24,18 @@ int main() {
 
 
 pair<long long, long long> getMinMax(long long a[], int n) {
-       sort(a,a+n);
-       pair<long long , long long>p={a[0],a[n-1]};
-       return p;
+      long long min,max=a[0];
+      for(int i=0;i<n;i++){
+          if(a[i]<min){
+              min=a[i];
+          }
+          if(a[i]>max){
+              max=a[i];
+          }
+      }
+      pair<long long,long long>p={min,max};
+      return p;
+      
       
       
     
