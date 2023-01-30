@@ -17,7 +17,33 @@ class Solution{
         //code here
        sort(arr,arr+r+1);
        return arr[k-1];
+       
+       
+       
+    //   Optimised Approach:
+//1. Since they are asking Kth Smallest element, we will use max heap.
+
+//2. We will iterate over the given array and push element in the max heap.
+
+//3. If size of max heap becomes greater than k, then we will pop.
+
+//4. maxh.top() will give the Kth smallest element.
+
+//Simple C++ Code using max heap
+//int kthSmallest(int arr[], int l, int r, int k) {
+        //code here
+        //priority_queue<int>maxh;
+        //for(int i=0; i<=r; i++)
+        //{
+          //  maxh.push(arr[i]);
+          //  if(maxh.size()>k)
+          //  {
+           //     maxh.pop();
+           // }
+       // }
+        //return maxh.top();
     }
+    
 };
 
 //{ Driver Code Starts.
