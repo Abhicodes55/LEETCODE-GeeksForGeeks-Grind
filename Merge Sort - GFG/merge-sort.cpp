@@ -22,72 +22,31 @@ class Solution
     void merge(int arr[], int l, int m, int r)
 
     {
+       int a[r-l+1];
+       int i=l,j=m+1,k=0;
+       while(i<=m && j<=r){
+         if(arr[i]<arr[j]){
+           a[k++]=arr[i++];
+         }
+        else{
+            a[k++]=arr[j++];
+          }
+       }
 
-        int len1 = (m-l)+1;
+    
 
-        int len2 = r-m;
+      while(i<=m){
+          a[k++]=arr[i++];
+            }
 
-        int *first = new int[len1];
-
-        int *second = new int[len2];
-
-         
-
-        int index = l;
-
-        for(int i = 0; i < len1; i++)
-
-            first[i] = arr[index++];
-
-        
-
-        index = m+1;
-
-        for(int i = 0; i < len2; i++)
-
-            second[i] = arr[index++];
-
-            
-
-        int i = 0;
-
-        int j = 0;
-
-        index = l;
-
-        while(i < len1 && j < len2)
-
-        {
-
-            if(first[i] < second[j])
-
-                arr[index++] = first[i++];
-
-            else
-
-                arr[index++] = second[j++];
-
+     while(j<=r){
+       a[k++]=arr[j++];
+          }
+     for(int m=l,k=0;m<=r;m++){
+       arr[m]=a[k++];
         }
-
-        
-
-        while(i < len1)
-
-            arr[index++] = first[i++];
-
-        
-
-        while(j < len2)
-
-            arr[index++] = second[j++];
-
-        
-
-        delete []first;
-
-        delete []second;
-
     }
+
 
     public:
 
@@ -95,7 +54,7 @@ class Solution
 
     {
 
-       if(l < r){
+       if(l<r){
 
            int mid = l + (r-l)/2;
 
