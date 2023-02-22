@@ -10,6 +10,9 @@ using namespace std;
 class Solution{   
 public:
     void leftRotate(int arr[], int n, int d) {
+        if(d>n){
+            return;
+        }
         reverse(arr,arr+d);
         reverse (arr+d,arr+n);
         reverse (arr,arr+n);
