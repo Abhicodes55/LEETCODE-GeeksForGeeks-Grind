@@ -11,7 +11,7 @@ class Solution{
   public:
     long long int floorSqrt(long long int x) 
     {   if(x==0||x==1){
-        return x;
+          return x;
             }
         long long int start=0,end=x;
         while(start<=end){
