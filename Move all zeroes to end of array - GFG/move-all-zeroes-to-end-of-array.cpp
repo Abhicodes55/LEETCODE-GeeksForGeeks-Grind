@@ -7,24 +7,14 @@ using namespace std;
 class Solution{
 public:
 	void pushZerosToEnd(int arr[], int n) {
-	    int v[n];
-	    int j=0;
-	    int countofzero=0;
+	    int p1=0,p2=0;//    USING TWO POINTERS
 	    for(int i=0;i<n;i++){
-	        if(arr[i]==0){
-	            countofzero++;
+	        if(arr[p2]!=0){
+	            swap(arr[p2++],arr[p1++]);
 	        }
-	    }
-	    for(int i=0;i<n;i++){
-	        if(arr[i]!=0){
-	            v[j++]=arr[i];
+	        else{
+	            p2++;
 	        }
-	    }
-	    for(int i=0;i<countofzero;i++){
-	        v[j++]=0;
-	    }
-	    for(int i=0;i<n;i++){
-	        arr[i]=v[i];
 	    }
 	    
 	}
