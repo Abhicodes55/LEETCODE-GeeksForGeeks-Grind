@@ -10,11 +10,18 @@ class Solution{
 public:
 	
 	int findMaximum(int arr[], int n) {
-	   int maxele=INT_MIN;
-	    for(int i=0;i<n;i++){
-	        maxele=max(maxele,arr[i]);
-	    }
-	    return maxele;
+	   // using Binary Search-> TC-O(N)
+	  int start=0,end=n-1,mid;
+	  while(start<end){
+	       mid= start+(end-start)/2;
+	       if(arr[mid]>arr[mid+1]){//it means we are in decreasing half of array 
+	           end=mid;//reducing search space towards left
+	       }
+	       else{//it means we are in increasing half of array 
+	           start=mid+1;//reducing search space towards right
+	       }
+	  }//After this loop both start and end will point to same element
+	  return arr[start];
 	}
 };
 
