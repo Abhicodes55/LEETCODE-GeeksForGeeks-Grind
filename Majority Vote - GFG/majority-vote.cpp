@@ -40,6 +40,8 @@ class Solution {
                 count2--;
             }
         }
+        //candiate1 and candidate 2 are expected majority elements
+         //verifying if an element is a majority element or not by counting its frequency in array
         count1=0,count2=0;
         for(int i:nums){
             if(i==candidate1){
@@ -47,12 +49,14 @@ class Solution {
             if(i==candidate2){
                 count2++;}
         }
+        //checking if frequency of an element is greater than n/3 or  not
         if(count1>n/3){
             majority.push_back(candidate1);
         }
         if(count2>n/3){
             majority.push_back(candidate2);
         }
+        //When majority element is not present in array
         if(majority.size()==0){
             majority.push_back(-1);
         }
