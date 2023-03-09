@@ -10,21 +10,36 @@ using namespace std;
 
 class Solution{
   public:
-     // Function to find majority element in the array
-    // a: input array
-    // size: size of input array
-    int majorityElement(int a[], int size)
-    {
-        int maj=size/2;
-        unordered_map<int,int>umap;
-        for(int i=0;i<size;i++){
-            umap[a[i]]++;
-        }
-        for(auto it:umap){
-            if(it.second>maj)return it.first;
-        }
-        return -1;
-        
+    int majorityElement(int nums[], int size)
+    {   
+       //Using The Boyer-Moore voting method, it is one of the most often used optimum algorithms for determining the majority element among elements with more than N/2 occurrences. This works wonderfully for finding the majority element, which requires two traversals over the provided items and is of O(N) time and O(1) space complexity.
+      int count=0,ele=0;
+      for(int i=0;i<size;i++){
+          if(count==0){
+              ele=nums[i];
+          }
+          if(nums[i]==ele){
+              count++;
+          }
+          else{
+              count--;
+          }
+          
+      }
+      count=0;
+      //After getting majority element checking the total frequency count of that element
+      //if it is greater than size/2 return majority element else there is no majority element so return -1;
+      for(int i=0;i<size;i++){
+          if(nums[i]==ele){
+             count++; 
+          }
+      }
+      if(count>size/2){
+          return ele;
+      }
+      return -1;
+      
+
     }
 };
 
