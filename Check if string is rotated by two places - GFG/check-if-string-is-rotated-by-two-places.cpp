@@ -11,11 +11,12 @@ class Solution
     //another string by exactly 2 places.
     bool isRotated(string s, string s2)
     {   
-        
+        //ANTI-CLOCKWISE ROTATION
         string anticlk=s;
         reverse(anticlk.begin(),anticlk.end());
         reverse(anticlk.begin(),anticlk.end()-2);
         reverse(anticlk.end()-2,anticlk.end());
+        //CLOCKWISE ROTATION
         string clk=s;
         reverse(clk.begin(),clk.end());
         reverse(clk.begin(),clk.begin()+2);
