@@ -6,93 +6,45 @@ using namespace std;
 class Solution{
 
 	public:
-	int findK(vector<vector<int>> &a, int n, int m, int k)
+	int findK(vector<vector<int>> &matrix, int n, int m, int k)
     {
-          int total = n*m;
+         int rsize=matrix.size();
+        int csize=matrix[0].size();
+        int top=0,bottom=rsize-1,left=0,right=csize-1;
+        vector<int>ans;
 
-        int count = 0;
+        while(top<=bottom && left<=right){
 
- 
-
-        int sRow = 0;
-
-        int eRow = n-1;
-
-        int sCol = 0;
-
-        int eCol = m-1;
-
- 
-
-        while(count < total)
-
-        {
-
-            //first row
-
-            for(int i = sCol; count < total && i <= eCol; i++){
-
-                count++;
-
-                if(k == count)
-
-                    return a[sRow][i];
-
+            //printing right
+            for(int i=left;i<=right;i++){
+               ans.push_back(matrix[top][i]);
             }
-
-            sRow++;
-
-            
-
-            //last column
-
-            for(int i = sRow; count < total && i <= eRow; i++){
-
-                count++;
-
-                if(k == count)
-
-                    return a[i][eCol];
-
+            top++;
+            //printing bottom
+            for(int i=top;i<=bottom;i++){
+                ans.push_back(matrix[i][right]);
             }
-
-            eCol--;
-
-            
-
-            //last row
-
-            for(int i = eCol; count < total && i >= sCol; i--){
-
-                count++;
-
-                 if(k == count)
-
-                    return a[eRow][i];
-
+            right--;
+            //Printing left
+            if(top<=bottom){
+               for(int i=right;i>=left;i--){
+                ans.push_back(matrix[bottom][i]);
             }
-
-            eRow--;
-
-            
-
-            //first column
-
-            for(int i = eRow; count < total && i >= sRow; i--){
-
-                count++;
-
-                if(k == count)
-
-                    return a[i][sCol];
-
+            bottom--;
             }
+           
+            //printing top
+            if(left<=right){
+                 for(int i=bottom;i>=top;i--){
+                ans.push_back(matrix[i][left]);
+            }
+            left++;
+            }
+           
 
-            sCol++;
-
-            
 
         }
+        return ans[k-1];
     }
 
 };
