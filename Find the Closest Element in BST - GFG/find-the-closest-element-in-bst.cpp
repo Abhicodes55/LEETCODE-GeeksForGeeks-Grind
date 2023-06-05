@@ -35,22 +35,30 @@ struct Node {
 class Solution
 {
     public:
-    //Function to find the least absolute difference between any node
-	//value of the BST and the given integer.
+    int level(Node *root,int k){
+	    if(!root) return INT_MAX;
+        int mini=INT_MAX;
+	    
+	    queue<Node*> q;
+	    q.push(root);
+	    
+	    while(!q.empty()){
+	        Node* curr=q.front();
+	        q.pop();
+	        
+	        mini=min(mini,abs(k - curr->data));
+	        
+	        if(curr->left)
+	            q.push(curr->left);
+	        if(curr->right)
+	            q.push(curr->right);
+	    }
+	    return mini;
+	}
     int minDiff(Node *root, int K)
     {
-       if (root == NULL) {
-           return INT_MAX;
-          }
-    int ans = INT_MAX;
-    if (K > root->data) {
-    ans = min(ans, minDiff(root->right, K));
-    } else {
-    ans = min(ans, minDiff(root->left, K));
+        return level(root,K);
     }
-    return min(ans, abs(K - root->data));
-    }
-    
 };
 
 
