@@ -11,46 +11,40 @@ class Solution{
     // arr[] : int input array of integers
     // k : the quadruple sum required
     vector<vector<int> > fourSum(vector<int> &nums, int target) {
-        vector<vector<int>>res;
+         vector<vector<int>>res;
+        vector<int>quads(4,0);
         int n=nums.size();
-        if(n==0)return res;
         sort(nums.begin(),nums.end());
         for(int i=0;i<n;i++){
+            if(i>0 && nums[i]==nums[i-1])continue;
             for(int j=i+1;j<n;j++){
-                int target_2=target-nums[i]-nums[j];
-                int front=j+1;
-                int back=n-1;
-                while(front<back){
-                    int two_sum=nums[front]+nums[back];
-                    if(two_sum<target_2){
-                        front++;
-                    }
-                    else if(two_sum>target_2){
-                        back--;
-                    }
-                    else{
-                        vector<int>quad(4,0);
-                        quad[0]=nums[i];
-                        quad[1]=nums[j];
-                        quad[2]=nums[front];
-                        quad[3]=nums[back];
-                        res.push_back(quad);
-                        //skipping duplicates for front pointer
-                        while(front<back && nums[front]==quad[2])++front;
-                         //skipping duplicates for back pointer
-                        while(front<back && nums[back]==quad[3])--back;
-
-                    }
+                if(j!=i+1 && nums[j]==nums[j-1])continue;
+                  int p=j+1;
+                  int q=n-1;
+                while(p<q){
+                long sum=nums[i]+nums[j];
+                sum+=nums[p];//to avoid overflow
+                sum+=nums[q];
+                if(sum<target){
+                   p++;
                 }
-                //skipping duplicates for j pointer 
-                while(j+1<n && nums[j+1]==nums[j]){
-                  ++j;
+                else if(sum>target){
+                q--;
+                }
+                else{
+                  quads={nums[i],nums[j],nums[p],nums[q]};
+                  res.push_back(quads);
+                  p++;q--;
+                  while(p<q && nums[p]==nums[p-1]){
+                      p++;
+                  }
+                  while(p<q && nums[q]==nums[q+1]){
+                      q--;
+                  }
                 }
             }
-             //skipping duplicates for i pointer 
-                while(i+1<n && nums[i+1]==nums[i]){
-                   ++i;
-                }
+            }
+            
         }
         return res;
     }
