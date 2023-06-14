@@ -90,17 +90,11 @@ Node* deleteNode(Node *head,int x)
         head=head->next;
         return head;
     }
-    int i=1,size=0;
-    while(temp->next!=NULL){
-        temp=temp->next;
-        size++;
-    }
-    temp=head;
     for(int i=1;i<x-1;i++){
         temp=temp->next;
     }
    
-        temp->next=temp->next->next;
+     temp->next=temp->next->next;
     
     
     
