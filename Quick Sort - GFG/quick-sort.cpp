@@ -19,30 +19,32 @@ class Solution
     //Function to sort an array using quick sort algorithm.
     void quickSort(int arr[], int low, int high)
     {
-        if(low>=high){
-            return;
+        // code here
+        if(low < high) {
+            int pi = partition(arr, low, high);
+            quickSort(arr, low, pi - 1);
+            quickSort(arr, pi + 1, high);
         }
-        int pivot=partition(arr,low,high);
-        quickSort(arr,low,pivot-1);
-        quickSort(arr,pivot+1,high);
     }
     
     public:
     int partition (int arr[], int low, int high)
     {
-       int pi=arr[high];
-       int i=low-1;
-       int j =low;
-       for(;j<high;j++){
-           if(arr[j]<pi){
-               i++;
-               swap(arr[i],arr[j]);
-           }
-            
-       }
-       swap(arr[i+1],arr[high]);
-      
-       return i+1;
+       // Your code here
+        // Your code here
+        int pivot = low;
+        while(low < high) {
+            while(arr[pivot] >= arr[low])
+                low++;
+            while(arr[pivot] < arr[high])
+                high--;
+            if(low < high)
+                swap(arr[low], arr[high]);
+        }
+        // for optmization purpose, you can remove this if condition
+        if(high != pivot)
+            swap(arr[high], arr[pivot]);
+        return high;
     }
 };
 
