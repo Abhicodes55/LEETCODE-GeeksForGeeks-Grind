@@ -10,44 +10,30 @@ using namespace std;
 
 class Solution {
   public:
-    int romanToDecimal(string &s) {
-          unordered_map<char,int>map;
-        int total=0,prev=0;
-        map['I']=1;
-        map['V']=5;
-        map['X']=10;
-        map['L']=50;
-        map['C']=100;
-        map['D']=500;
-        map['M']=1000;
-        for(auto it:s){
-           
-           if(prev==1&&it=='V'){
-               total=(total-prev)+map[it]-prev;
-           }
-           else if(prev==1&&it=='X'){
-               total=(total-prev)+map[it]-prev;
-           }
-           else if(prev==10&&it=='L'){
-               total=(total-prev)+map[it]-prev;
-           }
-           else if(prev==10&&it=='C'){
-              total=(total-prev)+map[it]-prev;
-           }
-           else if(prev==100&&it=='D'){
-               total=(total-prev)+map[it]-prev;
-           }
-           else if(prev==100&&it=='M'){
-               total=(total-prev)+map[it]-prev;
-           }
-           else{
-               total+=map[it];
-           }
-           prev=map[it];
-
+    int romanToDecimal(string &str) {
+        // code here
+        map<char,int> mp;
+        mp['I'] = 1;
+        mp['V'] = 5;
+        mp['X'] = 10;
+        mp['L'] = 50;
+        mp['C'] = 100;
+        
+        mp['D'] = 500;
+        mp['M'] = 1000;
+        int prev = 4000;
+        int count = 0;
+        for(int i = 0;i < str.length();++i){
+            
+            if (mp[str[i]] <= prev){
+                count += mp[str[i]];
+            }else if(mp[str[i]] > prev){
+                count -= prev;
+                count += (mp[str[i]]-prev);
+            }
+            prev = mp[str[i]];
         }
-        return total;
-
+        return count;
     }
 };
 
